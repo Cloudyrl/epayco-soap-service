@@ -9,6 +9,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    <part name = "document" type = "xsd:string"/>
    <part name = "phone" type = "xsd:string"/>
    <part name = "value" type = "xsd:number"/>
+   <part name = "auth_token" type = "xsd:string"/>
 </message>
  
 <message name = "CreateTransactionResponse">
@@ -18,6 +19,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
 <message name = "ConfirmTransactionRequest">
    <part name = "session_id" type = "xsd:string"/>
    <part name = "token" type = "xsd:string"/>
+   <part name = "auth_token" type = "xsd:string"/>
 </message>
  
 <message name = "ConfirmTransactionResponse">

@@ -8,6 +8,8 @@ export const UserService = {
     User_Port: {
       createUser: async function (args : any , cb : any) {
         try {
+          const auth_token = args.auth_token.$value;
+          if(auth_token != process.env.SOAP_AUTH_TOKEN) throw new ErrorHandler(401, 'UNAUTHORIZED');
           const user  = {
             document: args.document.$value,
             name : args.name.$value,
@@ -39,19 +41,21 @@ export const UserService = {
         }
       },
       rechargeWallet : async function (args:any,cb:any){
-        const criteria = {
-          document: args.document.$value,
-          phone : args.phone.$value
-        }
-        const dataToUpdate = {
-          $inc : { 
-            balance : args.value.$value
-          } 
-        }
-        const options = {
-          new : true
-        };
         try {
+          const criteria = {
+            document: args.document.$value,
+            phone : args.phone.$value
+          }
+          const dataToUpdate = {
+            $inc : { 
+              balance : args.value.$value
+            } 
+          }
+          const options = {
+            new : true
+          };
+          const auth_token = args.auth_token.$value;
+          if(auth_token != process.env.SOAP_AUTH_TOKEN) throw new ErrorHandler(401, 'UNAUTHORIZED');
           const data = await updateUserSvc(criteria,dataToUpdate,options);
           if(!data) throw new ErrorHandler(404, 'User not found');
           return {
@@ -73,6 +77,8 @@ export const UserService = {
           phone : args.phone.$value
         }
         try {
+          const auth_token = args.auth_token.$value;
+          if(auth_token != process.env.SOAP_AUTH_TOKEN) throw new ErrorHandler(401, 'UNAUTHORIZED');
           const data = await findUserSvc(criteria,'balance');
           if(!data) throw new ErrorHandler(404, 'User not found');
           return {

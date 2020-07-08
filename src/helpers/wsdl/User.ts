@@ -11,6 +11,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    <part name = "lastName" type = "xsd:string"/>
    <part name = "email" type = "xsd:string"/>
    <part name = "phone" type = "xsd:string"/>
+   <part name = "auth_token" type = "xsd:string"/>
 </message>
  
 <message name = "CreateUserResponse">
@@ -25,6 +26,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    <part name = "document" type = "xsd:string"/>
    <part name = "phone" type = "xsd:string"/>
    <part name = "value" type = "xsd:number"/>
+   <part name = "auth_token" type = "xsd:string"/>
 </message>
  
 <message name = "RechargeWalletResponse">
@@ -34,6 +36,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
 <message name = "ConsultWalletRequest">
    <part name = "document" type = "xsd:string"/>
    <part name = "phone" type = "xsd:string"/>
+   <part name = "auth_token" type = "xsd:string"/>
 </message>
 
 <message name = "ConsultWalletResponse">

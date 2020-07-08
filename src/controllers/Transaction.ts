@@ -3,6 +3,7 @@ import {
   createTransactionSvc,
   confirmTransactionSvc,
 } from "@services/TransactionService";
+import { ErrorHandler } from "@helpers/ErrorHandler";
 
 export const TransactionService = {
   Transaction_Service: {
@@ -14,6 +15,9 @@ export const TransactionService = {
             phone: args.phone.$value,
           };
           const value = args.value.$value;
+          const auth_token = args.auth_token.$value;
+          if (auth_token != process.env.SOAP_AUTH_TOKEN)
+            throw new ErrorHandler(401, "UNAUTHORIZED");
           await createTransactionSchema.validateAsync({ ...user, value });
           const session_id = await createTransactionSvc(user, value);
           return {
@@ -33,6 +37,9 @@ export const TransactionService = {
         const session_id = args.session_id.$value;
         const token = args.token.$value;
         try {
+          const auth_token = args.auth_token.$value;
+          if (auth_token != process.env.SOAP_AUTH_TOKEN)
+            throw new ErrorHandler(401, "UNAUTHORIZED");
           await confirmTransactionSvc(session_id, token);
           return {
             message: "Transaction confirmed",

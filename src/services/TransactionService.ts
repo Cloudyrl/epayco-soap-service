@@ -2,7 +2,7 @@ import { ITransaction } from '@models/TransactionModel';
 import logger from '@shared/Logger';
 import { findUserSvc } from './UserService';
 import { ErrorHandler } from '@helpers/ErrorHandler';
-import crypto from 'crypto';
+import crypto, { pseudoRandomBytes } from 'crypto';
 import { transactionStatus } from '@shared/constants';
 import { createTransaction, findTransaction, updateTransaction } from '@db/dao/TransactionDao';
 import { jwtSign, jwtVerify } from '@helpers/jwt';

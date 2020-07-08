@@ -21,6 +21,7 @@ export const UserService = {
           return {
             user: {
               id: data.id,
+              document: data.document,
               name: data.name,
               lastName: data.lastName,
               email : data.email,

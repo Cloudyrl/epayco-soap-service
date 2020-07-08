@@ -6,6 +6,7 @@ import crypto from 'crypto';
 import { transactionStatus } from '@shared/constants';
 import { createTransaction } from '@db/dao/TransactionDao';
 import { jwtSign } from '@helpers/jwt';
+import { sendEmail } from '@helpers/email/sendEmail';
 
 export const createTransactionSvc = async(userInfo: any , value : number)=>{
     try {
@@ -22,6 +23,7 @@ export const createTransactionSvc = async(userInfo: any , value : number)=>{
         const response = await createTransaction(transaction)
         if(!response) throw new ErrorHandler(500, 'Unexpected error while trying to create the transaction');
         const session_id = await jwtSign({...response.toObject()});
+        await sendEmail(transaction.value,token);
         return session_id;
     } catch (error) {
         logger.error("TCL: createTransactionSvc -> e", error);

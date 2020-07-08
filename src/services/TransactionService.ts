@@ -64,7 +64,7 @@ export const confirmTransactionSvc = async(session_id: string , token : string)=
         })
         await updateUser({_id:tokenTransaction.user},{
             $inc : { 
-                balance : transaction.value
+                balance : -transaction.value
             } 
         })
         return 'Transaction confirmed';

@@ -38,7 +38,7 @@ export const TransactionService = {
         try {
           await confirmTransactionSvc(session_id, token);
           return {
-            message: "Transaction cronfirmed",
+            message: "Transaction confirmed",
           };
         } catch (error) {
           cb({

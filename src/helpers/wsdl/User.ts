@@ -31,6 +31,15 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    <part name = "balance" type = "xsd:number"/>
 </message>
 
+<message name = "ConsultWalletRequest">
+   <part name = "document" type = "xsd:string"/>
+   <part name = "phone" type = "xsd:string"/>
+</message>
+
+<message name = "ConsultWalletResponse">
+   <part name = "balance" type = "xsd:number"/>
+</message>
+
 <portType name = "User_PortType">
    <operation name = "createUser">
       <input message = "tns:CreateUserRequest"/>
@@ -39,6 +48,10 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    <operation name = "rechargeWallet">
       <input message = "tns:RechargeWalletRequest"/>
       <output message = "tns:RechargeWalletResponse"/>
+   </operation>
+   <operation name = "consultWallet">
+      <input message = "tns:ConsultWalletRequest"/>
+      <output message = "tns:ConsultWalletResponse"/>
    </operation>
 </portType>
 
@@ -63,6 +76,22 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    </operation>
    <operation name = "rechargeWallet">
       <soap:operation soapAction = "rechargeWallet"/>
+      <input>
+         <soap:body
+            encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+            namespace = "urn:examples:userservice"
+            use = "encoded"/>
+      </input>
+     
+      <output>
+         <soap:body
+            encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+            namespace = "urn:examples:userservice"
+            use = "encoded"/>
+      </output>
+   </operation>
+   <operation name = "consultWallet">
+      <soap:operation soapAction = "consultWallet"/>
       <input>
          <soap:body
             encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"

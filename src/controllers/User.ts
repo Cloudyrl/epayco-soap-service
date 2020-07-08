@@ -1,4 +1,4 @@
-import { createUserSvc, updateUserSvc } from '@services/UserService';
+import { createUserSvc, updateUserSvc, findUserSvc } from '@services/UserService';
 import { createUserSchema } from '@shared/constants';
 import { IUser } from '@models/UserModel';
 import { ErrorHandler } from '@helpers/ErrorHandler';
@@ -56,6 +56,27 @@ export const UserService = {
           return {
             balance: data.balance,
             message: "wallet recharged successfully"
+          }  
+        } catch (error) {
+          cb({
+            Fault: {
+              error: error.message ,
+              statusCode: error.statusCode? error.statusCode : 500
+            }
+          })
+        }
+      },
+      consultWallet: async function ( args:any, cb:any){
+        const criteria = {
+          document: args.document.$value,
+          phone : args.phone.$value
+        }
+        try {
+          const data = await findUserSvc(criteria,'balance');
+          if(!data) throw new ErrorHandler(404, 'User not found');
+          return {
+            balance: data.balance,
+            message: "wallet balance retrieve successfully"
           }  
         } catch (error) {
           cb({

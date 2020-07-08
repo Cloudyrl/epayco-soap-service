@@ -14,7 +14,6 @@ build/
 # misc
 **/.DS_Store
 config.dev.json
-env/
 .secret
 .nyc*
 logs/

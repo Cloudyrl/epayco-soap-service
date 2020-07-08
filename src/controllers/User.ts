@@ -1,6 +1,7 @@
-import { createUserSvc } from '@services/UserService';
+import { createUserSvc, updateUserSvc } from '@services/UserService';
 import { createUserSchema } from '@shared/constants';
 import { IUser } from '@models/UserModel';
+import { ErrorHandler } from '@helpers/ErrorHandler';
 
 export const myService = {
   User_Service: {
@@ -15,6 +16,7 @@ export const myService = {
             phone : args.phone.$value
           } as unknown as IUser
           await createUserSchema.validateAsync(user);
+          user.balance = 0;
           const data = await createUserSvc(user);
           return {
             user: {
@@ -27,7 +29,6 @@ export const myService = {
             message: "done"
           }      
         } catch (error) {
-          console.log(error)
           cb({
             Fault: {
               error: error.message ,
@@ -36,6 +37,35 @@ export const myService = {
           })
         }
       },
+      rechargeWallet : async function (args:any,cb:any){
+        const criteria = {
+          document: args.document.$value,
+          phone : args.phone.$value
+        }
+        const dataToUpdate = {
+          $inc : { 
+            balance : args.value.$value
+          } 
+        }
+        const options = {
+          new : true
+        };
+        try {
+          const data = await updateUserSvc(criteria,dataToUpdate,options);
+          if(!data) throw new ErrorHandler(404, 'User not found');
+          return {
+            balance: data.balance,
+            message: "wallet recharged successfully"
+          }  
+        } catch (error) {
+          cb({
+            Fault: {
+              error: error.message ,
+              statusCode: error.statusCode? error.statusCode : 500
+            }
+          })
+        }
+      }
     },
   },
 };

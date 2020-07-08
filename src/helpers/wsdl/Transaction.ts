@@ -21,7 +21,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
 </message>
  
 <message name = "ConfirmTransactionResponse">
-   <part name = "balance" type = "xsd:number"/>
+   <part name = "message" type = "xsd:string"/>
 </message>
 
 <portType name = "Transaction_PortType">

@@ -18,3 +18,4 @@ export const createTransactionSchema = Joi.object().keys({
   phone: Joi.string().required(),
   value: Joi.number().min(1).required()
 });
+

@@ -6,11 +6,19 @@ xmlns:tns = "http://www.examples.com/wsdl/UserService.wsdl"
 xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
 
 <message name = "CreateUserRequest">
-   <part name = "firstName" type = "xsd:string"/>
+   <part name = "document" type = "xsd:string"/>
+   <part name = "name" type = "xsd:string"/>
+   <part name = "lastName" type = "xsd:string"/>
+   <part name = "email" type = "xsd:string"/>
+   <part name = "phone" type = "xsd:string"/>
 </message>
  
 <message name = "CreateUserResponse">
    <part name = "name" type = "xsd:string"/>
+   <part name = "name" type = "xsd:string"/>
+   <part name = "lastName" type = "xsd:string"/>
+   <part name = "email" type = "xsd:string"/>
+   <part name = "phone" type = "xsd:string"/>
 </message>
 
 <portType name = "User_PortType">

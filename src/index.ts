@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import { myService } from '@controllers/User';
 import {createUserXml} from '@helpers/wsdl/createUser';
 
-import {soap as s} from 'express-soap';
+import {soap} from 'express-soap';
 
 
 // Init express
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-app.use("/", s({services:myService,wsdl:createUserXml}));
+app.use("/soap/user", soap({services:myService,wsdl:createUserXml}));
 
 
 //Db connection
@@ -39,7 +39,7 @@ mongoose
   .then(() => {
     const port = Number(process.env.PORT || 3000);
     app.listen(port, () => {
-      console.log(`server initialized on port ${port}` );
+      console.log(`Server initialized on port ${port}` );
     });
   })
   .catch(() => console.log("database connection failed"));

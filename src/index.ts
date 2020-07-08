@@ -4,10 +4,13 @@ import morgan from "morgan";
 import express from "express";
 import "express-async-errors";
 import mongoose from "mongoose";
-import { myService } from '@controllers/User';
-import {createUserXml} from '@helpers/wsdl/createUser';
+import { UserService } from '@controllers/User';
+import {UserXml} from '@helpers/wsdl/User';
+
 
 import {soap} from 'express-soap';
+import { TransactionService } from '@controllers/Transaction';
+import { TransacionXml } from '@helpers/wsdl/Transaction';
 
 
 // Init express
@@ -26,7 +29,8 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-app.use("/soap/user", soap({services:myService,wsdl:createUserXml}));
+app.use("/soap/user", soap({services:UserService,wsdl:UserXml}));
+app.use("/soap/transaction", soap({services:TransactionService,wsdl:TransacionXml}));
 
 
 //Db connection

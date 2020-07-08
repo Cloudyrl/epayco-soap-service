@@ -1,4 +1,4 @@
-export const createUserXml = `<definitions name = "UserService"
+export const UserXml = `<definitions name = "UserService"
 targetNamespace = "http://www.examples.com/wsdl/UserService.wsdl"
 xmlns = "http://schemas.xmlsoap.org/wsdl/"
 xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
@@ -24,6 +24,7 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
 <message name = "RechargeWalletRequest">
    <part name = "document" type = "xsd:string"/>
    <part name = "phone" type = "xsd:string"/>
+   <part name = "value" type = "xsd:number"/>
 </message>
  
 <message name = "RechargeWalletResponse">

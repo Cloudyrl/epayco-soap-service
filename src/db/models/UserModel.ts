@@ -7,6 +7,7 @@ export interface IUser extends Document {
     email: string;
     phone: string;
     balance: number
+    transactions: any[]
 }
 
 const UserSchema = new Schema({
@@ -15,10 +16,11 @@ const UserSchema = new Schema({
     lastName: { type : String},
     email : {type : String},
     phone : {type : String},
-    balance: {type : Number}
+    balance: {type : Number},
+    transactions: [{type : Schema.Types.ObjectId, ref : 'Transaction'}]
 },{
     timestamps:true,
     versionKey: false
-})
+});
 
 export const UserModel = model<IUser>('User', UserSchema, 'user');

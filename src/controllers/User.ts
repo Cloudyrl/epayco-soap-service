@@ -3,7 +3,7 @@ import { createUserSchema } from '@shared/constants';
 import { IUser } from '@models/UserModel';
 import { ErrorHandler } from '@helpers/ErrorHandler';
 
-export const myService = {
+export const UserService = {
   User_Service: {
     User_Port: {
       createUser: async function (args : any , cb : any) {

@@ -6,7 +6,7 @@ export const createUser = async (user: IUser) => {
       const response = await UserModel.create(user);
       return response;
     } catch (error) {
-      console.log(error)
+      if (error.name === 'MongoError' && error.code === 11000) throw new ErrorHandler(500, Object.keys(error.keyValue)[0]+` has to be unique`)
       throw new ErrorHandler(500, `${error.name} ${error.message}`);
     }
 };

@@ -11,11 +11,11 @@ export interface IUser extends Document {
 }
 
 const UserSchema = new Schema({
-    document : { type : String},
+    document : { type : String, unique : true},
     name : { type : String},
     lastName: { type : String},
-    email : {type : String},
-    phone : {type : String},
+    email : {type : String, unique : true},
+    phone : {type : String, unique : true},
     balance: {type : Number},
     transactions: [{type : Schema.Types.ObjectId, ref : 'Transaction'}]
 },{

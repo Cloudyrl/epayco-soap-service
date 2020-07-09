@@ -20,7 +20,7 @@ En la carpeta del proyecto hacer `npm install` para instalar las dependencias y 
 | createTransaction | Metodo para emitir un pago | 
 | confirmTransaction | metodo parar confirmar un pago |
 
-##Consideraciones
+## Consideraciones
 Para el envio del token al email del usuario recomiendo crear una cuenta en mailtrap y llenar las configuraciones del transporte dentro de la carpeta src/helpers/email, sin esto no sera posible enviar emails aunque la funcion ya esta completa. De todas formas el token sera logueado por consola al momento de crear un pago siendo asi posible ver el token sin tener que revisar el correo.
 
 El id de sesión es un jwt token con un tiempo de expiracion de una hora.

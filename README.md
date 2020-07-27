@@ -6,7 +6,7 @@ Servicio soap de la prueba de aplicacion para ePayco.
 
 En la carpeta del proyecto hacer `npm install` para instalar las dependencias y luego `npm run start:dev` para correr el proyecto en la direccion  [http://localhost:3002](http://localhost:3002)
 
-## Enpoints disponibles
+## Endpoints disponibles
 ### /soap/user
 | Metodo | Descripcion | 
 | -------- | -------- | 
